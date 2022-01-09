@@ -1,0 +1,57 @@
+{
+  "name": "redux-yjs-bindings",
+  "description": "Sync any redux store slice using yjs",
+  "version": "0.0.1",
+  "type": "module",
+  "source": "src/index.ts",
+  "exports": {
+    "require": "./dist/bindings.cjs",
+    "default": "./dist/bindings.modern.js"
+  },
+  "main": "./dist/bindings.cjs",
+  "module": "./dist/bindings.module.js",
+  "unpkg": "./dist/bindings.umd.js",
+  "scripts": {
+    "build": "microbundle",
+    "dev": "microbundle watch",
+    "coverage": "codecov",
+    "test": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lscheibel/redux-yjs-bindings.git"
+  },
+  "keywords": [
+    "shared-editing",
+    "yjs",
+    "state-management",
+    "redux",
+    "middleware"
+  ],
+  "author": "Lennard Scheibel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lscheibel/redux-yjs-bindings/issues"
+  },
+  "homepage": "https://github.com/lscheibel/redux-yjs-bindings#readme",
+  "dependencies": {
+    "recursive-diff": "^1.0.8",
+    "redux": "^4.1.2",
+    "yjs": "^13.5.23"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.4.0",
+    "@typescript-eslint/eslint-plugin": "^5.9.0",
+    "@typescript-eslint/parser": "^5.9.0",
+    "codecov": "^3.8.3",
+    "eslint": "^8.6.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-jest": "^25.3.4",
+    "jest": "^27.4.7",
+    "microbundle": "^0.14.2",
+    "prettier": "^2.5.1",
+    "ts-jest": "^27.1.2",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.4"
+  }
+}
