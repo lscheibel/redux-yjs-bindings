@@ -1,7 +1,7 @@
 import { Doc as YDoc, transact } from 'yjs';
 import { Reducer, Store } from 'redux';
 import { patchStore, SET_STATE_FROM_YJS_ACTION } from './patchRedux';
-import { valueToYValue } from './valueToYValue';
+import { toSharedType } from './toSharedType';
 import { patchYjs } from './patchYjs';
 
 // Setup Yjs like this:
@@ -32,7 +32,7 @@ export const setup = (yDoc: YDoc, store: Store, sliceName: string) => {
   const state = store.getState()[sliceName];
 
   // Todo: Do we have to wait before setting? Maybe yjs will already populate the map...
-  rootMap.set(sliceName, valueToYValue(state));
+  rootMap.set(sliceName, toSharedType(state));
 
   // Prevent reacting to our own changes.
   let currentlyPatchingYjs = false;

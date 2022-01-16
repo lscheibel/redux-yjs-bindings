@@ -1,13 +1,13 @@
 import * as Y from 'yjs';
 import { ROOT_MAP_NAME } from './index';
-import { valueToYValue } from './valueToYValue';
+import { toSharedType } from './toSharedType';
 import { patchYjs } from './patchYjs';
 
 const testPatch = (name: string, a: unknown, b: unknown) => {
   test(name, () => {
     const yDoc = new Y.Doc();
     const rootMap = yDoc.getMap(ROOT_MAP_NAME);
-    rootMap.set('stateSliceName', valueToYValue(a));
+    rootMap.set('stateSliceName', toSharedType(a));
 
     patchYjs(rootMap, 'stateSliceName', a, b);
 

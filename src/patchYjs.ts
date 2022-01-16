@@ -1,7 +1,7 @@
 import { Map as YMap, Array as YArray } from 'yjs';
 import { getDiff } from 'recursive-diff';
 import { clamp, isInteger, isString } from './utlis';
-import { valueToYValue } from './valueToYValue';
+import { toSharedType } from './toSharedType';
 import { RecursiveDiffResult, RecursiveDiffResultOperation } from './recursive-diff.types';
 
 /** @desc Handles the operation from recursive-diff to patch the given yType */
@@ -15,7 +15,7 @@ const patchYType = (
     operation === RecursiveDiffResultOperation.Add ||
     operation === RecursiveDiffResultOperation.Update
   ) {
-    const yValue = valueToYValue(value);
+    const yValue = toSharedType(value);
 
     if (yType instanceof YArray && isInteger(property)) {
       if (operation === RecursiveDiffResultOperation.Update) yType.delete(property);
