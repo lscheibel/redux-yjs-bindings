@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TodoTextInput from './TodoTextInput';
+import SyncSwitch from './SyncSwitch';
 
 const Header = ({ addTodo }) => (
   <header className="header">
@@ -18,6 +19,7 @@ const Header = ({ addTodo }) => (
         https://github.com/reduxjs/redux/tree/master/examples/todomvc
       </a>
     </small>
+    <SyncSwitch />
     <TodoTextInput
       newTodo
       onSave={(text) => {

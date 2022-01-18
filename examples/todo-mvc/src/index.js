@@ -12,7 +12,7 @@ import { setup } from 'redux-yjs-bindings';
 export const yDoc = new YDoc();
 
 // clients connected to the same room-name share document updates
-const provider = new WebrtcProvider('your-room-name', yDoc, {
+export const rtc = new WebrtcProvider('your-room-name', yDoc, {
   signaling: ['ws://localhost:4444'],
 });
 
