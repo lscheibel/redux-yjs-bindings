@@ -5,16 +5,12 @@ import { Provider } from 'react-redux';
 import App from './components/App';
 import reducer from './reducers';
 import 'todomvc-app-css/index.css';
-import { WebrtcProvider } from 'y-webrtc';
 import { Doc as YDoc } from 'yjs';
 import { setup } from 'redux-yjs-bindings';
+import { RTC } from './YjsWebRTCProvider';
 
 export const yDoc = new YDoc();
-
-// clients connected to the same room-name share document updates
-export const rtc = new WebrtcProvider('your-room-name', yDoc, {
-  signaling: ['ws://localhost:4444'],
-});
+export const rtc = new RTC(yDoc);
 
 const store = createStore(reducer);
 

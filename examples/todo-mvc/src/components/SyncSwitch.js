@@ -12,7 +12,7 @@ const buttonStyle = {
 };
 
 const SyncSwitch = () => {
-  const [connected, setConnected] = useState(true);
+  const [connected, setConnected] = useState(rtc.connected);
 
   return (
     <button
