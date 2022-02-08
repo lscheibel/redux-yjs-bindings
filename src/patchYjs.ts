@@ -1,6 +1,6 @@
 import { Map as YMap, Array as YArray } from 'yjs';
 import { getDiff } from 'recursive-diff';
-import { clamp, isInteger, isString } from './utlis';
+import { clamp, isInteger, isString } from './utils';
 import { toSharedType } from './toSharedType';
 import { RecursiveDiffResult, RecursiveDiffResultOperation } from './recursive-diff.types';
 

@@ -3,18 +3,7 @@ import { Reducer, Store } from 'redux';
 import { patchStore, SET_STATE_FROM_YJS_ACTION } from './patchRedux';
 import { toSharedType } from './toSharedType';
 import { patchYjs } from './patchYjs';
-
-// Setup Yjs like this:
-// const rootMap = yDoc.getMap('__ReduxMiddlewareRootMap');
-//
-// When registering new state slice the name must be given: reduxMiddlewareYjs('mySharedState', state)
-// // Maybe wait for synchronisation to happen, so that we don't override existing state.
-// Then get the current state: currentState = state['mySharedState'];
-// And save it into our rootMap: rootMap.set('mySharedState', currentState);
-// This way the state slice may contain objects but also arrays or primitive values are supported.
-// Also, multiple slices are supported!
-// Another benefit is, that the YDoc can be used for other purposes than the redux store. (except for the "__ReduxYjsBindingsRootMap" map).
-//
+import { isArray, isObject } from './utils';
 
 export { SET_STATE_FROM_YJS_ACTION } from './patchRedux';
 

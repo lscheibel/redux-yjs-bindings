@@ -1,5 +1,5 @@
 import { Map as YMap, Array as YArray } from 'yjs';
-import { isArray, isObject } from './utlis';
+import { isArray, isObject } from './utils';
 
 /** @desc Recursively transforms arrays and maps into their respective Yjs class. */
 export const toSharedType = <Value = unknown>(val: Value) => {
