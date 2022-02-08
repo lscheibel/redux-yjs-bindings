@@ -28,8 +28,10 @@ const patchYType = (
     }
   } else if (operation === RecursiveDiffResultOperation.Delete) {
     if (yType instanceof YArray && isInteger(property)) {
-      // This actually only works because the "recursive-diff" turns [1, 2, 3] => [3] into [{op: 'update', index: 0, val: 3}, {op: 'del', index: 1}, {op: 'del', index: 2}]
-      // Therefore delete operations are always last. A more sophisticated solution would group deletions together to a single operation.
+      // This actually only works because the "recursive-diff" cancels inserts and deletions out into update operations
+      // [1, 2, 3] => [3] into [{op: 'update', index: 0, val: 3}, {op: 'del', index: 1}, {op: 'del', index: 2}]
+      // Therefore delete or insert operations are always last (never both, since that would be represented as an update).
+      // A more sophisticated solution would group deletions together to a single operation.
       const clampedIndex = clamp(property, 0, yType.length - 1);
       yType.delete(clampedIndex);
     } else if (yType instanceof YMap && isString(property)) {

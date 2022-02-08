@@ -21,6 +21,7 @@ export default function todos(state = initialState, action) {
       return [
         ...state,
         {
+          // Todo: id should be a uuid
           id: state.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1,
           completed: false,
           text: action.text,
