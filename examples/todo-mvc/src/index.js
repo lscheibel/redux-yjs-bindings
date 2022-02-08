@@ -6,7 +6,7 @@ import App from './components/App';
 import reducer from './reducers';
 import 'todomvc-app-css/index.css';
 import { Doc as YDoc } from 'yjs';
-import { setup } from 'redux-yjs-bindings';
+import { bind } from 'redux-yjs-bindings';
 import { RTC } from './YjsWebRTCProvider';
 
 export const yDoc = new YDoc();
@@ -14,7 +14,7 @@ export const rtc = new RTC(yDoc);
 
 const store = createStore(reducer);
 
-setup(yDoc, store, 'todos');
+bind(yDoc, store, 'todos');
 
 render(
   <Provider store={store}>

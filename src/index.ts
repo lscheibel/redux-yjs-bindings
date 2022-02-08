@@ -16,7 +16,7 @@ export const ROOT_MAP_NAME = '__ReduxYjsBindingsRootMap';
  * @param store The redux store containing the values that should be synced.
  * @param sliceName The name of the redux-subtree (slice) that contains the values.
  * */
-export const setup = (yDoc: YDoc, store: Store, sliceName: string) => {
+export const bind = (yDoc: YDoc, store: Store, sliceName: string) => {
   const rootMap = yDoc.getMap(ROOT_MAP_NAME);
   const state = store.getState()[sliceName];
 
@@ -51,7 +51,7 @@ export const setup = (yDoc: YDoc, store: Store, sliceName: string) => {
 };
 
 /** @desc This is a utility function to enhance an existing reducer to react to the actions dispatched that are meant to set the state of the redux slice on incoming changes from yjs. */
-export const enhanceYjsReducer =
+export const enhanceReducer =
   (currentReducer: Reducer): Reducer =>
   (state, action) => {
     if (action?.type === SET_STATE_FROM_YJS_ACTION) {

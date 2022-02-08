@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import todos from './todos';
 import visibilityFilter from './visibilityFilter';
-import { enhanceYjsReducer } from 'redux-yjs-bindings';
+import { enhanceReducer } from 'redux-yjs-bindings';
 
 const rootReducer = combineReducers({
-  todos: enhanceYjsReducer(todos),
+  todos: enhanceReducer(todos),
   visibilityFilter,
 });
 
