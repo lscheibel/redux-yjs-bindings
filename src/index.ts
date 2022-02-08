@@ -20,8 +20,20 @@ export const bind = (yDoc: YDoc, store: Store, sliceName: string) => {
   const rootMap = yDoc.getMap(ROOT_MAP_NAME);
   const state = store.getState()[sliceName];
 
-  // Todo: Do we have to wait before setting? Maybe yjs will already populate the map...
-  rootMap.set(sliceName, toSharedType(state));
+  // Set initial values from store, while preventing overriding remote states.
+  if (isObject(state)) {
+    transact(yDoc, () => {
+      rootMap.set(sliceName, toSharedType({}));
+      patchYjs(rootMap, sliceName, {}, state);
+    });
+  }
+
+  if (isArray(state)) {
+    transact(yDoc, () => {
+      rootMap.set(sliceName, toSharedType([]));
+      patchYjs(rootMap, sliceName, [], state);
+    });
+  }
 
   // Prevent reacting to our own changes.
   let currentlyPatchingYjs = false;
