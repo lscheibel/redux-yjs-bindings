@@ -1,9 +1,12 @@
 {
   "name": "redux-yjs-bindings",
   "description": "Use yjs to sync your redux store with other peers!",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "type": "module",
-  "files": ["dist", "src"],
+  "files": [
+    "dist",
+    "src"
+  ],
   "source": "src/index.ts",
   "exports": {
     "require": "./dist/bindings.cjs",
