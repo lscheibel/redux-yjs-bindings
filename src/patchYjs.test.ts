@@ -2,6 +2,7 @@ import * as Y from 'yjs';
 import { ROOT_MAP_NAME } from './index';
 import { toSharedType } from './toSharedType';
 import { patchYjs } from './patchYjs';
+import fc from 'fast-check';
 
 const testPatch = (name: string, a: unknown, b: unknown) => {
   test(name, () => {
@@ -14,6 +15,22 @@ const testPatch = (name: string, a: unknown, b: unknown) => {
     expect(rootMap.toJSON().stateSliceName).toStrictEqual(b);
   });
 };
+
+describe('properties', () => {
+  it('should handle any json value', () => {
+    fc.assert(
+      fc.property(fc.jsonValue(), fc.jsonValue(), (a, b) => {
+        const yDoc = new Y.Doc();
+        const rootMap = yDoc.getMap(ROOT_MAP_NAME);
+        rootMap.set('stateSliceName', toSharedType(a));
+
+        patchYjs(rootMap, 'stateSliceName', a, b);
+
+        expect(rootMap.toJSON().stateSliceName).toStrictEqual(b);
+      })
+    );
+  });
+});
 
 describe('primitive values', () => {
   testPatch('handle null', undefined, null);
@@ -34,6 +51,7 @@ describe('shallow objects', () => {
   testPatch('update property value', { a: 'foo' }, { a: 'bar' });
   testPatch('update property key', { a: 'foo' }, { b: 'foo' });
   testPatch('handle number as key', { 0: 'foo', b: 0 }, { 0: 'bar', b: 0 });
+  // testPatch('handle array with undefined as value', [], [undefined]); // Yjs doesn't support undefined in Arrays
 });
 
 describe('shallow arrays', () => {
