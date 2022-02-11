@@ -1,6 +1,6 @@
 {
   "name": "redux-yjs-bindings",
-  "description": "Use yjs to sync your redux store with other peers!",
+  "description": "Use Yjs to sync your Redux store with other peers!",
   "version": "0.1.0",
   "type": "module",
   "files": [
