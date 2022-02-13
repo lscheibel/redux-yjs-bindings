@@ -5,7 +5,7 @@ import MainSection from '../components/MainSection';
 import { getCompletedTodoCount } from '../selectors';
 
 const mapStateToProps = (state) => ({
-  todosCount: state.todos.length,
+  todosCount: Object.keys(state.todos).length,
   completedCount: getCompletedTodoCount(state),
 });
 
