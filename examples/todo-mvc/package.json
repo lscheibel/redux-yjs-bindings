@@ -13,15 +13,16 @@
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.0",
     "redux": "^4.0.5",
+    "redux-yjs-bindings": "file:../..",
     "reselect": "^4.0.0",
     "todomvc-app-css": "^2.3.0",
-    "y-webrtc": "^10.2.0",
-    "redux-yjs-bindings": "file:../.."
+    "y-webrtc": "^10.2.0"
   },
   "scripts": {
     "start": "SKIP_PREFLIGHT_CHECK=true react-scripts start",
     "serve:signaling-server": "PORT=4444 node ./node_modules/y-webrtc/bin/server.js",
-    "build": "react-scripts build",
+    "build": "SKIP_PREFLIGHT_CHECK=true react-scripts build",
+    "build:ci": "PUBLIC_URL=/redux-yjs-bindings npm run build",
     "eject": "react-scripts eject",
     "test": "react-scripts test --env=node"
   },

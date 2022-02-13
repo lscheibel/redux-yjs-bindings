@@ -18,8 +18,12 @@ export class RTC {
       this.provider.connect();
     } else {
       // clients connected to the same room-name share document updates
-      this.provider = new WebrtcProvider('your-room-name', this.yDoc, {
-        signaling: ['ws://localhost:4444'],
+      this.provider = new WebrtcProvider('redux-yjs-bindings', this.yDoc, {
+        signaling: [
+          'wss://signaling.yjs.dev',
+          'wss://y-webrtc-signaling-eu.herokuapp.com',
+          'ws://localhost:4444',
+        ],
       });
     }
 
