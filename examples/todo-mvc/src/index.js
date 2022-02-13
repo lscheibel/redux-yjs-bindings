@@ -12,7 +12,7 @@ import { RTC } from './YjsWebRTCProvider';
 export const yDoc = new YDoc();
 export const rtc = new RTC(yDoc);
 
-const store = createStore(reducer);
+const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__?.());
 
 bind(yDoc, store, 'todos');
 
