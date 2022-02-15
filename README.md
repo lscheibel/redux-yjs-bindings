@@ -19,7 +19,7 @@ npm i redux-yjs-bindings
 
 ## Prerequisites
 
-To use this library you will need a [Yjs document](https://docs.yjs.dev) as well as a [redux store](https://redux.js.org/introduction/getting-started).
+To use this library you will need a [Yjs document](https://docs.yjs.dev) as well as a [Redux store](https://redux.js.org/introduction/getting-started).
 Detailed steps on how to set both up can be taken form their respective documentation.
 You will need to configure the reducer of the state slice that you want to have synced to accept an action dispatched by this library,
 however helper functions are exported to hide this away. Check below for example usage:
@@ -32,7 +32,7 @@ import { Doc } from 'yjs';
 import { createStore } from 'redux';
 import { mySharedStateReducer } from './store/reducers';
 
-// Create Yjs document, this can also be an existing one and can be used for any other purpose.
+// Create Yjs document, or use existing one.
 const yDoc = new Doc();
 
 const rootReducer = {
@@ -61,7 +61,7 @@ if performance becomes a problem.
 ### Undefined in Array (`[undefined]`) Not Supported
 
 As per [Redux guidelines](https://redux.js.org/style-guide/style-guide#do-not-put-non-serializable-values-in-state-or-actions)
-values in teh store should be JSON serializable. While undefined values are mostly supported by this library,
+values in the store should be JSON serializable. While undefined values are mostly supported by this library,
 Yjs currently doesn't support undefined in arrays. However, undefined as a primitive or as object values works
 just fine, even though they are technically not a part of JSON.
 
