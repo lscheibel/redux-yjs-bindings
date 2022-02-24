@@ -15,6 +15,7 @@
   "main": "./dist/bindings.cjs",
   "module": "./dist/bindings.module.js",
   "unpkg": "./dist/bindings.umd.js",
+  "typings": "./dist/index.d.ts",
   "scripts": {
     "build": "microbundle",
     "dev": "microbundle watch",
