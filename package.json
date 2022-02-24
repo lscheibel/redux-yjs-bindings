@@ -20,7 +20,8 @@
     "build": "microbundle",
     "dev": "microbundle watch",
     "coverage": "codecov",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
