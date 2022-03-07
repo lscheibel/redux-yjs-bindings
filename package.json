@@ -15,11 +15,13 @@
   "main": "./dist/bindings.cjs",
   "module": "./dist/bindings.module.js",
   "unpkg": "./dist/bindings.umd.js",
+  "typings": "./dist/index.d.ts",
   "scripts": {
     "build": "microbundle",
     "dev": "microbundle watch",
     "coverage": "codecov",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
