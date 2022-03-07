@@ -43,7 +43,7 @@
   "dependencies": {
     "recursive-diff": "^1.0.8",
     "redux": "^4.1.2",
-    "yjs": "^13.5.23"
+    "yjs": "^13.5.28"
   },
   "devDependencies": {
     "@types/jest": "^27.4.0",
