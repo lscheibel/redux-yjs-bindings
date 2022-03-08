@@ -29,6 +29,11 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "jest": {
+    "transformIgnorePatterns": [
+      "node_modules/(?!lib0|y-protocols)"
+    ]
+  },
   "browserslist": {
     "production": [
       ">0.2%",

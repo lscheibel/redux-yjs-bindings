@@ -40,6 +40,11 @@
     "url": "https://github.com/lscheibel/redux-yjs-bindings/issues"
   },
   "homepage": "https://github.com/lscheibel/redux-yjs-bindings#readme",
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": ["examples"]
+  },
   "dependencies": {
     "recursive-diff": "^1.0.8",
     "redux": "^4.1.2",
