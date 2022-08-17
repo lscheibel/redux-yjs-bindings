@@ -1,5 +1,5 @@
 import { Doc as YDoc, transact } from 'yjs';
-import { Reducer, Store } from 'redux';
+import { AnyAction, Reducer, Store } from 'redux';
 import { patchStore, SET_STATE_FROM_YJS_ACTION } from './patchRedux';
 import { toSharedType } from './toSharedType';
 import { patchYjs } from './patchYjs';
@@ -64,11 +64,11 @@ export const bind = (yDoc: YDoc, store: Store, sliceName: string) => {
 
 /** @desc This is a utility function to enhance an existing reducer to react to the actions dispatched that are meant to set the state of the redux slice on incoming changes from yjs. */
 export const enhanceReducer =
-  (currentReducer: Reducer): Reducer =>
-  (state, action) => {
-    if (action?.type === SET_STATE_FROM_YJS_ACTION) {
-      return action.payload === undefined ? state : action.payload;
-    } else {
-      return currentReducer(state, action);
-    }
-  };
+  <T,>(currentReducer: Reducer<T, AnyAction>): Reducer<T, AnyAction> =>
+    (state, action) => {
+      if (action?.type === SET_STATE_FROM_YJS_ACTION) {
+        return action.payload === undefined ? state : action.payload;
+      } else {
+        return currentReducer(state, action);
+      }
+    };
