@@ -1,5 +1,5 @@
 import { Doc as YDoc, transact } from 'yjs';
-import { AnyAction, Reducer, Store } from 'redux';
+import { Reducer, Store } from 'redux';
 import { patchStore, SET_STATE_FROM_YJS_ACTION } from './patchRedux';
 import { toSharedType } from './toSharedType';
 import { patchYjs } from './patchYjs';
@@ -16,9 +16,9 @@ export const ROOT_MAP_NAME = '__ReduxYjsBindingsRootMap';
  * @param store The redux store containing the values that should be synced.
  * @param sliceName The name of the redux-subtree (slice) that contains the values.
  * */
-export const bind = <T extends { [key in string]: any }, K extends keyof T & string>(
+export const bind = <S extends { [key in string]: any }, K extends keyof S & string>(
   yDoc: YDoc, 
-  store: Store<T>, 
+  store: Store<S>, 
   sliceName: K) => {
   const rootMap = yDoc.getMap(ROOT_MAP_NAME);
   const state = store.getState()[sliceName];
@@ -67,7 +67,7 @@ export const bind = <T extends { [key in string]: any }, K extends keyof T & str
 
 /** @desc This is a utility function to enhance an existing reducer to react to the actions dispatched that are meant to set the state of the redux slice on incoming changes from yjs. */
 export const enhanceReducer =
-  <T,>(currentReducer: Reducer<T, AnyAction>): Reducer<T, AnyAction> =>
+  <S>(currentReducer: Reducer<S>): Reducer<S> =>
     (state, action) => {
       if (action?.type === SET_STATE_FROM_YJS_ACTION) {
         return action.payload === undefined ? state : action.payload;
