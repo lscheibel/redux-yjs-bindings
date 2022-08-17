@@ -16,7 +16,10 @@ export const ROOT_MAP_NAME = '__ReduxYjsBindingsRootMap';
  * @param store The redux store containing the values that should be synced.
  * @param sliceName The name of the redux-subtree (slice) that contains the values.
  * */
-export const bind = (yDoc: YDoc, store: Store, sliceName: string) => {
+export const bind = <T extends { [key in string]: any }, K extends keyof T & string>(
+  yDoc: YDoc, 
+  store: Store<T>, 
+  sliceName: K) => {
   const rootMap = yDoc.getMap(ROOT_MAP_NAME);
   const state = store.getState()[sliceName];
 
