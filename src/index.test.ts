@@ -4,7 +4,8 @@ import { applyMiddleware, combineReducers, createStore } from 'redux';
 
 const resolvers: Array<() => void> = [];
 
-const counter = enhanceReducer((state = 0, action: any) => {
+// eslint-disable-next-line @typescript-eslint/no-inferrable-types
+const counter = enhanceReducer((state: number = 0, action: any) => {
   switch (action?.type) {
     case 'INC':
       return state + 1;
