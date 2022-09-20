@@ -32,7 +32,7 @@ jobs:
 
       - name: Install examples/todo-mvc dependencies
         working-directory: ./examples/todo-mvc
-        run: npm ci
+        run: npm ci --legacy-peer-deps
 
       - name: Build examples/todo-mvc
         working-directory: ./examples/todo-mvc
