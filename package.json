@@ -1,7 +1,7 @@
 {
   "name": "redux-yjs-bindings",
   "description": "Use Yjs to sync your Redux store with other peers!",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "type": "module",
   "files": [
     "dist",
@@ -43,7 +43,9 @@
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node",
-    "testPathIgnorePatterns": ["examples"]
+    "testPathIgnorePatterns": [
+      "examples"
+    ]
   },
   "dependencies": {
     "recursive-diff": "^1.0.8",
