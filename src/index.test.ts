@@ -77,3 +77,32 @@ describe('Async failure', () => {
     expect(yDoc2.getMap(ROOT_MAP_NAME).get('counter')).toBe(99);
   });
 });
+
+describe('unbinding from redux events', () => {
+  it('should stop listening to state changes when the unbind function is called', () => {
+    const yDoc1 = new Y.Doc()
+    const store = createStore(combineReducers({ counter }));
+
+    const unbind = bind(yDoc1, store, 'counter')
+
+    store.dispatch({ type: 'INC' });
+
+    expect(yDoc1.getMap(ROOT_MAP_NAME).get('counter')).toBe(1);
+    expect(store.getState().counter).toBe(1)
+
+    yDoc1.getMap(ROOT_MAP_NAME).set('counter', 10);
+    expect(store.getState().counter).toBe(10)
+
+    unbind()
+
+    store.dispatch({ type: 'INC' });
+
+    expect(store.getState().counter).toBe(11)
+    expect(yDoc1.getMap(ROOT_MAP_NAME).get('counter')).toBe(10);
+
+    yDoc1.getMap(ROOT_MAP_NAME).set('counter', 20);
+
+    expect(store.getState().counter).toBe(11)
+    expect(yDoc1.getMap(ROOT_MAP_NAME).get('counter')).toBe(20);
+  })
+})

@@ -90,7 +90,7 @@ Well this obscure "feature" of JavaScript is simply not supported and will fail 
 
 ---
 
-### bind(yDoc: Y.Doc, store: Store, sliceName: string): void
+### bind(yDoc: Y.Doc, store: Store, sliceName: string): unbind()
 
 #### yDoc
 
@@ -103,6 +103,10 @@ The redux store changes should be synced with.
 #### sliceName
 
 The name of the state slice (subtree) that should be synced.
+
+#### unbind()
+
+Returns a function which unbinds the state sync between the YJS doc and redux store
 
 ---
 
