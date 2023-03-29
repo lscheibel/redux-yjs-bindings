@@ -44,7 +44,7 @@ export const bind = <S extends { [P in keyof S]: S[P] }, K extends keyof S & str
   let currentlyPatchingStore = false;
 
   let currentState = store.getState()[sliceName];
-  store.subscribe(() => {
+  const reduxUnsubscribe = store.subscribe(() => {
     const prevState = currentState;
     currentState = store.getState()[sliceName];
 
@@ -57,13 +57,20 @@ export const bind = <S extends { [P in keyof S]: S[P] }, K extends keyof S & str
     currentlyPatchingYjs = false;
   });
 
-  rootMap.observeDeep(() => {
+  const handleYjsStoreChange = () => {
     if (currentlyPatchingYjs) return;
 
     currentlyPatchingStore = true;
     patchStore(store, rootMap, sliceName);
     currentlyPatchingStore = false;
-  });
+  }
+
+  rootMap.observeDeep(handleYjsStoreChange);
+
+  return () => {
+    reduxUnsubscribe()
+    rootMap.unobserveDeep(handleYjsStoreChange)
+  }
 };
 
 /** @desc This is a utility function to enhance an existing reducer to react to the actions dispatched that are meant to set the state of the redux slice on incoming changes from yjs. */
