@@ -78,7 +78,7 @@ export const enhanceReducer =
   <S>(currentReducer: Reducer<S>): Reducer<S> =>
   (state, action) => {
     if (action?.type === SET_STATE_FROM_YJS_ACTION) {
-      return action.payload === undefined ? state : action.payload;
+      return {...state, ...action.payload};
     } else {
       return currentReducer(state, action);
     }
